@@ -6,9 +6,25 @@ if [ -z "${LD_PRELOAD+x}" ]; then
     export LD_PRELOAD
 fi
 
-# If running the rails server then create or migrate existing database
-if [ "${@: -2:1}" == "./bin/rails" ] && [ "${@: -1:1}" == "server" ]; then
-  ./bin/rails db:prepare
+# If running the rails server, wait for the database to be ready first
+if [ "${1}" == "./bin/thrust" ] || [ "${1}" == "./bin/rails" ] && [ "${2}" == "server" ]; then
+  # Wait for database to be ready
+  until nc -z -v -w30 ${DB_HOST:-db} ${DB_PORT:-5432}; do
+    echo "Waiting for database to be available..."
+    sleep 2
+  done
+  
+  # Create or migrate database if needed
+  if [ "${AUTO_MIGRATE:-true}" == "true" ]; then
+    echo "Preparing database..."
+    ./bin/rails db:prepare
+  fi
 fi
 
+# Remove a potentially pre-existing server.pid for Rails
+if [ -f "/rails/tmp/pids/server.pid" ]; then
+  rm -f /rails/tmp/pids/server.pid
+fi
+
+# Execute the given or default command
 exec "${@}"
