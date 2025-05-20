@@ -1,0 +1,53 @@
+<!-- app/views/tasks/index.html.erb -->
+<div class="container mx-auto px-4 py-8">
+  <!-- Formulário para nova tarefa -->
+  <div class="max-w-2xl mx-auto mb-8">
+    <%= turbo_frame_tag "new_task" do %>
+      <div class="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow">
+        <%= form_with model: @task, class: "task-form" do |form| %>
+          <div class="mb-4">
+            <%= form.text_field :title, placeholder: t('tasks.form.title_placeholder', default: 'Título da tarefa...'), class: "w-full border-0 focus:ring-0 text-lg font-medium placeholder-gray-400", autocomplete: "off" %>
+          </div>
+          
+          <div class="mb-4">
+            <%= form.text_field :category, placeholder: t('tasks.form.category_placeholder', default: 'Categoria (opcional)'), class: "w-full border-0 focus:ring-0 text-sm text-gray-600 placeholder-gray-400", autocomplete: "off" %>
+          </div>
+          
+          <div class="flex justify-end">
+            <%= form.submit t('tasks.form.submit_create', default: 'Criar Tarefa'), class: "btn-primary text-sm py-2 px-4" %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  
+  <!-- Filtros -->
+  <div class="max-w-6xl mx-auto mb-6">
+    <div class="flex flex-wrap gap-2 justify-center">
+      <%= link_to t('tasks.filter.all', default: 'Todas'), tasks_path, class: "px-4 py-2 rounded-full #{params[:category].blank? ? 'bg-indigo-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}" %>
+      
+      <%= link_to t('tasks.filter.by_category', default: 'Por Categoria'), by_category_tasks_path, class: "px-4 py-2 rounded-full #{current_page?(by_category_tasks_path) ? 'bg-indigo-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}" %>
+      
+      <% if @tasks.any? { |task| task.category.present? } %>
+        <% @tasks.select { |task| task.category.present? }.map(&:category).uniq.each do |category| %>
+          <%= link_to category, tasks_path(category: category), class: "px-4 py-2 rounded-full #{params[:category] == category ? 'bg-indigo-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  
+  <!-- Grid de tarefas -->
+  <div id="tasks" class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+    <% if @tasks.any? %>
+      <%= render @tasks %>
+    <% else %>
+      <div class="col-span-full text-center py-12">
+        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+        </svg>
+        <h3 class="mt-2 text-sm font-medium text-gray-900"><%= t('tasks.empty_state', default: 'Nenhuma tarefa encontrada.') %></h3>
+        <p class="mt-1 text-sm text-gray-500"><%= t('tasks.empty_state_action', default: 'Crie uma nova tarefa para começar.') %></p>
+      </div>
+    <% end %>
+  </div>
+</div>

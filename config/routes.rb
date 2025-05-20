@@ -1,15 +1,40 @@
+# config/routes.rb
 Rails.application.routes.draw do
-  devise_for :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # Redirecionar raiz para o locale padrão
+  root to: redirect("/#{I18n.default_locale}")
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
+    # Definir raiz para usuários autenticados
+    authenticated :user do
+      root "tasks#index", as: :authenticated_root
+    end
+
+    # Definir raiz para visitantes
+    get "/", to: "pages#home", as: :locale_root
+
+    # Devise sem callbacks OmniAuth
+    devise_for :users
+
+    # Resto das suas rotas...
+    resources :tasks do
+      resources :task_items do
+        member do
+          patch :toggle_status
+        end
+      end
+
+      collection do
+        get :by_category
+      end
+    end
+
+    resources :task_items, only: [] do
+      collection do
+        get :pending
+        get :completed
+      end
+    end
+  end
+
   get "up" => "rails/health#show", as: :rails_health_check
-
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 end

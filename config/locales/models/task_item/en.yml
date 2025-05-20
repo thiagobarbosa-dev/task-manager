@@ -1,0 +1,47 @@
+en:
+  activerecord:
+    models:
+      task_item:
+        one: "Task Item"
+        other: "Task Items"
+    attributes:
+      task_item:
+        title: "Title"
+        description: "Description"
+        status: "Status"
+        due_date: "Due Date"
+        created_at: "Created at"
+        updated_at: "Updated at"
+    errors:
+      models:
+        task_item:
+          attributes:
+            title:
+              blank: "can't be blank"
+            task:
+              required: "is required"
+  
+  task_items:
+    empty_state: "No items found."
+    empty_state_action: "Click on \"New Item\" to add one."
+    new: "New Item"
+    edit: "Edit Item"
+    create: "Create Item"
+    update: "Update Item"
+    status:
+      pending: "Pending"
+      completed: "Completed"
+      updated: "Item status updated."
+    due_date:
+      none: "No due date"
+      today: "Today"
+      tomorrow: "Tomorrow"
+      overdue: "Overdue (%{date})"
+      completed: "Completed on %{date}"
+    filter:
+      all: "All"
+      pending: "Pending"
+      completed: "Completed"
+    form:
+      submit_create: "Create Item"
+      submit_update: "Update Item"
