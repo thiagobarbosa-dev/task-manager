@@ -1,0 +1,47 @@
+pt-BR:
+  activerecord:
+    models:
+      task_item:
+        one: "Item de Tarefa"
+        other: "Itens de Tarefa"
+    attributes:
+      task_item:
+        title: "Título"
+        description: "Descrição"
+        status: "Status"
+        due_date: "Data de Vencimento"
+        created_at: "Criado em"
+        updated_at: "Atualizado em"
+    errors:
+      models:
+        task_item:
+          attributes:
+            title:
+              blank: "não pode ficar em branco"
+            task:
+              required: "é obrigatória"
+  
+  task_items:
+    empty_state: "Nenhum item encontrado."
+    empty_state_action: "Clique em \"Novo Item\" para adicionar."
+    new: "Novo Item"
+    edit: "Editar Item"
+    create: "Criar Item"
+    update: "Atualizar Item"
+    status:
+      pending: "Pendente"
+      completed: "Concluído"
+      updated: "Status do item atualizado."
+    due_date:
+      none: "Sem prazo"
+      today: "Hoje"
+      tomorrow: "Amanhã"
+      overdue: "Atrasado (%{date})"
+      completed: "Concluído em %{date}"
+    filter:
+      all: "Todos"
+      pending: "Pendentes"
+      completed: "Concluídos"
+    form:
+      submit_create: "Criar Item"
+      submit_update: "Atualizar Item"

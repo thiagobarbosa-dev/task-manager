@@ -29,3 +29,26 @@
 
 en:
   hello: "Hello world"
+  tasks:
+    create:
+      success: "Task created successfully"
+      failure: "Failed to create task"
+    update:
+      success: "Task updated successfully"
+      failure: "Failed to update task"
+    delete:
+      success: "Task deleted successfully"
+      failure: "Failed to delete task"
+  errors:
+    not_found: "Task not found"
+    invalid_params: "Invalid parameters"
+  task_items:
+    create:
+      success: "Task item created successfully"
+      failure: "Failed to create task item"
+    update:
+      success: "Task item updated successfully"
+      failure: "Failed to update task item"
+    delete:
+      success: "Task item deleted successfully"
+      failure: "Failed to delete task item"

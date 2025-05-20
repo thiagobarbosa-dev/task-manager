@@ -1,0 +1,3 @@
+<%= turbo_stream.prepend "tasks", partial: "tasks/task", locals: { task: @task } %>
+<%= turbo_stream.update "new_task", "" %>
+<%= turbo_stream.append "flash_container", partial: "shared/flash_message", locals: { type: "notice", message: I18n.t("tasks.create.success") } %>

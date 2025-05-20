@@ -1,0 +1,31 @@
+<!-- app/views/shared/_navbar.html.erb -->
+<nav class="bg-indigo-600 text-white">
+  <div class="container mx-auto px-4 py-3">
+    <div class="flex justify-between items-center">
+      <div class="flex items-center space-x-4">
+        <%= link_to t('app_name', default: 'Task Manager'), root_path, class: "text-xl font-bold" %>
+        
+        <% if user_signed_in? %>
+          <div class="hidden md:flex space-x-4">
+            <%= link_to t('navigation.tasks', default: 'Tarefas'), tasks_path, class: "hover:text-indigo-200" %>
+            <%= link_to t('navigation.categories', default: 'Categorias'), by_category_tasks_path, class: "hover:text-indigo-200" %>
+            <%= link_to t('navigation.pending', default: 'Pendentes'), pending_task_items_path, class: "hover:text-indigo-200" %>
+            <%= link_to t('navigation.completed', default: 'Concluídos'), completed_task_items_path, class: "hover:text-indigo-200" %>
+          </div>
+        <% end %>
+      </div>
+      
+      <div class="flex items-center space-x-4">
+        <% if user_signed_in? %>
+          <div class="hidden md:block">
+            <span class="mr-2"><%= current_user.email %></span>
+          </div>
+          <%= button_to t('navigation.sign_out', default: 'Sair'), destroy_user_session_path, method: :delete, class: "text-sm bg-indigo-700 px-3 py-1 rounded hover:bg-indigo-800" %>
+        <% else %>
+          <%= link_to t('navigation.sign_in', default: 'Entrar'), new_user_session_path, class: "text-sm bg-indigo-700 px-3 py-1 rounded hover:bg-indigo-800" %>
+          <%= link_to t('navigation.sign_up', default: 'Registrar'), new_user_registration_path, class: "text-sm bg-white text-indigo-600 px-3 py-1 rounded hover:bg-indigo-100" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</nav>

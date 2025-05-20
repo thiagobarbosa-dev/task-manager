@@ -1,0 +1,2 @@
+<%= turbo_stream.remove dom_id(@task) %>
+<%= turbo_stream.append "flash_container", partial: "shared/flash_message", locals: { type: "notice", message: I18n.t("tasks.destroy.success") } %>

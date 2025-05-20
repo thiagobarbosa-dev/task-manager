@@ -1,0 +1,54 @@
+
+en:
+  activerecord:
+    models:
+      task:
+        one: "Task"
+        other: "Tasks"
+    attributes:
+      task:
+        title: "Title"
+        category: "Category"
+        created_at: "Created at"
+        updated_at: "Updated at"
+    errors:
+      models:
+        task:
+          attributes:
+            title:
+              blank: "can't be blank"
+            user:
+              required: "is required"
+  
+  tasks:
+    empty_state: "No tasks found."
+    empty_state_action: "Click on \"New Task\" to add one."
+    new: "New Task"
+    edit: "Edit Task"
+    create: "Create Task"
+    update: "Update Task"
+    items_count:
+      one: "1 item"
+      other: "%{count} items"
+    status:
+      empty: "Empty"
+      completed: "Completed"
+      in_progress: "%{progress}% completed"
+    filter:
+      all: "All"
+      by_category: "By Category"
+    uncategorized: "Uncategorized"
+    index:
+      title: "My Tasks"
+      new_task: "New Task"
+    show:
+      back: "Back to Tasks"
+      items_title: "Task Items"
+      new_item: "New Item"
+    by_category:
+      title: "Tasks by Category"
+    form:
+      title_label: "Title"
+      category_label: "Category"
+      submit_create: "Create Task"
+      submit_update: "Update Task"

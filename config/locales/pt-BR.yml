@@ -1,0 +1,26 @@
+
+pt-BR:
+  hello: "Olá mundo"
+  tasks:
+    create:
+      success: "Tarefa criada com sucesso."
+      failure: "Falha ao criar tarefa."
+    update:
+      success: "Tarefa atualizada com sucesso."
+      failure: "Falha ao atualizar tarefa."
+    delete:
+      success: "Tarefa excluída com sucesso."
+      failure: "Falha ao excluir tarefa."
+  errors:
+    not_found: "Tarefa não encontrada."
+    invalid_params: "Parâmetros inválidos."
+  task_items:
+    create:
+      success: "Item de tarefa criado com sucesso."
+      failure: "Falha ao criar item de tarefa."
+    update:
+      success: "Item de tarefa atualizado com sucesso."
+      failure: "Falha ao atualizar item de tarefa."
+    delete:
+      success: "Item de tarefa excluído com sucesso."
+      failure: "Falha ao excluir item de tarefa."

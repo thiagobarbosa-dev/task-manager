@@ -1,0 +1,4 @@
+<%= turbo_stream.prepend "task_items", partial: "task_items/task_item", locals: { task: @task, task_item: @task_item } %>
+<%= turbo_stream.update "new_task_item", "" %>
+<%= turbo_stream.replace dom_id(@task), partial: "tasks/task", locals: { task: @task } %>
+<%= turbo_stream.append "flash_container", partial: "shared/flash_message", locals: { type: "notice", message: I18n.t("task_items.create.success") } %>

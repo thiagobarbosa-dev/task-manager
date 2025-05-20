@@ -1,0 +1,13 @@
+en:
+  shared:
+    navbar:
+      title: "Task Manager"
+    footer:
+      copyright: "Task Manager. All rights reserved."
+      terms: "Terms"
+      privacy: "Privacy"
+      contact: "Contact"
+    flash:
+      dismiss: "Close"
+    language_selector:
+      title: "Language"
