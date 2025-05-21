@@ -7,7 +7,7 @@ export default class extends Controller {
   }
   
   connect() {
-    // Auto-dismiss flash messages after the specified time
+    console.log("Flash controller connected")
     if (this.dismissAfterValue > 0) {
       this.dismissTimeout = setTimeout(() => {
         this.dismiss()
@@ -22,9 +22,9 @@ export default class extends Controller {
   }
   
   dismiss() {
-    this.element.style.opacity = 0
+    this.element.classList.add("opacity-0")
     setTimeout(() => {
       this.element.remove()
-    }, 300) // Match the transition duration in CSS
+    }, 300)
   }
 }

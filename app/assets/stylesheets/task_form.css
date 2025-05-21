@@ -1,0 +1,189 @@
+/* app/assets/stylesheets/task_form.css */
+.task-card {
+  transition: all 0.2s ease-in-out;
+  max-width: 600px;
+  margin: 0 auto 20px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.task-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.task-card .task-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.task-items-container {
+  min-height: 50px;
+  max-height: 300px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+.task-items-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.task-items-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.task-items-container::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.task-item-row {
+  transition: background-color 0.2s ease;
+  border-radius: 4px;
+  padding: 6px 4px;
+  margin-bottom: 4px;
+}
+
+.task-item-row:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.task-item-row input[type="text"] {
+  background: transparent;
+  width: 100%;
+  font-size: 14px;
+}
+
+.task-item-row input[type="checkbox"] {
+  cursor: pointer;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+}
+
+.task-item-row button {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.task-item-row:hover button {
+  opacity: 1;
+}
+
+.new-item-row {
+  margin-top: 8px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  padding-top: 8px;
+}
+
+/* Estilo para itens concluídos */
+.task-item-row input[type="text"].line-through {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+/* Cards de tarefas na lista */
+.task-list-card {
+  transition: all 0.2s ease-in-out;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.task-list-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.task-list-card .task-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.task-list-card .task-items {
+  flex-grow: 1;
+}
+
+.task-list-card .task-footer {
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .task-card {
+    max-width: 100%;
+    margin: 0 0 16px;
+  }
+  
+  .task-item-row button {
+    opacity: 1; /* Sempre visível em dispositivos móveis */
+  }
+  
+  .grid-cols-1 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Animações */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.task-item-row {
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* Estilo para o botão de salvar */
+.save-button {
+  background-color: #4f46e5;
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.save-button:hover {
+  background-color: #4338ca;
+  transform: translateY(-1px);
+}
+
+.save-button:active {
+  transform: translateY(0);
+}
+
+/* Adicione ao task_form.css ou similar */
+
+#tasks {
+  /* Configuração de colunas (Masonry like) */
+  column-count: 1; /* Default para telas pequenas */
+  column-gap: 1.5rem; /* Equivalente ao gap-6 do Tailwind (24px) */
+}
+
+#tasks > .task-list-card {
+  /* Necessário para que o item funcione bem em colunas */
+  display: inline-block;
+  width: 100%; /* O card ocupa a largura da coluna */
+  margin-bottom: 1.5rem; /* Espaço entre os cards na mesma coluna (equivalente ao gap-6) */
+  /* Opcional: evita que o conteúdo interno quebre entre colunas */
+  /* break-inside: avoid; */
+  /* page-break-inside: avoid; */ /* Para compatibilidade */
+}
+
+/* Responsividade para as colunas */
+@media (min-width: 768px) { /* Equivalente a md */
+  #tasks {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 1024px) { /* Equivalente a lg */
+  #tasks {
+    column-count: 3;
+  }
+}
+
+/* Ajuste para o último item em colunas, para não ter margin-bottom excessivo no final do container */
+/* Isso é um pouco mais complexo em CSS puro, mas geralmente a margin-bottom no item é suficiente */

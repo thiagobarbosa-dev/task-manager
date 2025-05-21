@@ -1,0 +1,86 @@
+<!-- app/views/tasks/_form.html.erb -->
+<div class="task-card bg-white rounded-lg shadow-md p-4 mb-6" data-controller="task-form">
+  <%# Adicione a nova ação keydown aqui %>
+  <%= form_with(model: task, class: "task-form", data: {
+    action: "submit->task-form#submit keydown->task-form#preventFormSubmitOnEnter", # <-- Nova ação keydown
+    task_form_target: "form"
+  }) do |form| %>
+    <div class="mb-3">
+      <%= form.text_field :title,
+                         class: "w-full text-xl font-medium border-none focus:outline-none focus:ring-0 placeholder-gray-400",
+                         placeholder: t('tasks.form.title_placeholder', default: "Título da tarefa..."),
+                         data: { task_form_target: "title" } %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.text_field :category,
+                         class: "w-full text-sm text-gray-600 border-none focus:outline-none focus:ring-0 placeholder-gray-400",
+                         placeholder: t('tasks.form.category_placeholder', default: "Categoria (opcional)"),
+                         data: { task_form_target: "category" } %>
+    </div>
+
+    <div class="task-items-container" data-task-form-target="itemsContainer">
+      <% if task.persisted? && task.task_items.any? %>
+        <%# Note: Iterar com index pode causar problemas se a ordem ou contagem mudar no front-end antes de salvar %>
+        <%# Uma abordagem mais robusta seria usar um ID temporário ou o próprio item.id se existir %>
+        <%# Vamos manter o index por enquanto, mas esteja ciente disso %>
+        <% task.task_items.each_with_index do |item, index| %>
+          <div class="task-item-row flex items-center mb-2" data-task-form-target="itemRow">
+            <div class="flex-shrink-0 mr-2">
+              <%# Cuidado aqui: o checkbox não está associado diretamente a um campo do form_with para status. %>
+              <%# O status é atualizado no input hidden pelo JS. %>
+              <input type="checkbox"
+                     class="h-5 w-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                     <%= item.completed? ? 'checked' : '' %>
+                     data-action="change->task-form#toggleItemStatus">
+            </div>
+            <%# Nome correto para nested attributes de um item EXISTENTE %>
+            <%= form.text_field :title, # Use o helper do form, ele lida com o nome correto se item for um objeto TaskItem
+                                 value: item.title, # Passe o valor explicitamente se necessário
+                                 class: "flex-grow text-sm border-none focus:outline-none focus:ring-0 placeholder-gray-400 #{item.completed? ? 'line-through text-gray-400' : 'text-gray-700'}",
+                                 data: { action: "keydown->task-form#handleItemKeydown" } %>
+            <%# Inclui o ID do item existente %>
+            <%= form.hidden_field :id, value: item.id %>
+            <%# Input hidden para status - é melhor deixar o Stimulus Controller gerenciar isso dinamicamente,
+               ou usar um campo oculto gerado pelo form_with se o TaskItem aceitar status diretamente via nested.
+               Seu JS já atualiza um input hidden, vamos garantir que ele exista. %>
+            <%# Vamos adicionar o input hidden de status manualmente aqui também, garantindo o nome correto %>
+             <input type="hidden" name="task[task_items_attributes][<%= item.id %>][status]" value="<%= item.status %>" data-task-form-target="itemStatusInput">
+
+            <button type="button" class="ml-2 text-gray-400 hover:text-gray-600" data-action="click->task-form#removeItem">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+        <% end %>
+      <% end %>
+
+      <!-- Campo para adicionar novo item - este é gerenciado pelo JS -->
+      <div class="task-item-row flex items-center mb-2 new-item-row" data-task-form-target="newItemRow">
+        <div class="flex-shrink-0 mr-2">
+          <div class="h-5 w-5 rounded border border-gray-300 flex items-center justify-center text-gray-400">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+            </svg>
+          </div>
+        </div>
+        <input type="text"
+               placeholder="<%= t('tasks.form.add_item_placeholder', default: 'Adicionar item...') %>"
+               class="flex-grow text-sm border-none focus:outline-none focus:ring-0 placeholder-gray-400"
+               data-task-form-target="newItem"
+               data-action="keydown->task-form#handleNewItemKeydown">
+      </div>
+    </div>
+
+    <div class="flex justify-end mt-4 border-t pt-3">
+      <% if task.persisted? %>
+        <%= link_to t('common.cancel', default: 'Cancelar'), task_path(task), class: "mr-2 px-4 py-2 text-sm text-gray-600 hover:text-gray-800" %>
+      <% else %>
+        <%= link_to t('common.cancel', default: 'Cancelar'), tasks_path, class: "mr-2 px-4 py-2 text-sm text-gray-600 hover:text-gray-800" %>
+      <% end %>
+      <%# Use o form.submit para garantir que ele está associado ao form_with %>
+      <%= form.submit t('common.save', default: 'Salvar'), class: "px-4 py-2 bg-indigo-600 text-white text-sm rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+    </div>
+  <% end %>
+</div>
