@@ -1,13 +1,27 @@
-<!-- app/views/tasks/_task.html.erb -->
 <div id="task_<%= task.id %>" class="task-list-card bg-white rounded-lg shadow-md overflow-hidden">
-  <div class="p-6 task-content">
+  <%= link_to task_path(task),
+            data: {
+              action: "click->index#deleteTask:preventDefault",
+              index_task_id: task.id,
+              turbo_confirm: t('tasks.confirm_delete', default: 'Tem certeza que deseja excluir esta tarefa?'),
+            },
+              class: "task-delete-button absolute top-2 right-2 p-1 text-gray-400 hover:text-red-600 z-10 rounded-full hover:bg-gray-100" do %>
+    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+    </svg>
+  <% end %>
+  
+  <div class="p-6 task-content cursor-pointer"
+       data-action="click->index#loadEditForm:preventDefault" # Chama a ação no IndexController
+       data-index-task-id="<%= task.id %>">
+
     <div class="flex justify-between items-start mb-4">
       <h2 class="text-xl font-semibold text-gray-800"><%= task.title %></h2>
       <% if task.category.present? %>
         <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full"><%= task.category %></span>
       <% end %>
     </div>
-    
+
     <% if task.task_items.any? %>
       <div class="mb-3">
         <div class="w-full bg-gray-200 rounded-full h-2">
@@ -15,7 +29,7 @@
         </div>
         <div class="text-right text-xs text-gray-500 mt-1"><%= task.progress_percentage %>% <%= t('pages.home.completed_tasks', default: 'concluídas') %></div>
       </div>
-      
+
       <ul class="task-items mb-3">
         <% task.task_items.first(4).each do |item| %>
           <li class="flex items-center py-1">
@@ -30,9 +44,5 @@
     <% else %>
       <p class="text-gray-500 mb-4 task-items"><%= t('tasks.index.no_items', default: 'Nenhum item adicionado') %></p>
     <% end %>
-    
-    <div class="task-footer">
-      <%= link_to t('tasks.index.view_details', default: 'Ver detalhes'), task_path(task), class: "text-indigo-600 hover:text-indigo-800 text-sm" %>
-    </div>
   </div>
 </div>

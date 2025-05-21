@@ -78,6 +78,7 @@ pt-BR:
       no_tasks: "Nenhuma tarefa encontrada"
       view_details: "Ver detalhes"
       items: "itens"
+      no_items: "Nenhum item adicionado"
     show:
       back: "Voltar"
       edit: "Editar"
@@ -86,10 +87,12 @@ pt-BR:
       add_item: "Adicionar item"
     form:
       title: "Título"
-      category: "Categoria"
+      category: "Categoria(opcional)"
       submit: "Salvar"
       cancel: "Cancelar"
-  
+      add_item: "Adicionar item"
+    confirm_delete: "Tem certeza que deseja excluir esta tarefa? Esta ação não pode ser desfeita."
+
   # Itens de Tarefa
   task_items:
     form:
