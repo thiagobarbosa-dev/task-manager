@@ -29,6 +29,16 @@
 
 en:
   hello: "Hello world"
+  common:
+    welcome: "Welcome to Task Manager"
+    loading: "Loading..."
+    save: "Save"
+    cancel: "Cancel"
+    delete: "Delete"
+    edit: "Edit"
+    view: "View"
+    back: "Back"
+    next: "Next"
   tasks:
     create:
       success: "Task created successfully"

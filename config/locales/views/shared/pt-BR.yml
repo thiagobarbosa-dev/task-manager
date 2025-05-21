@@ -79,6 +79,11 @@ pt-BR:
       view_details: "Ver detalhes"
       items: "itens"
       no_items: "Nenhum item adicionado"
+      search: "Pesquisar por Título ou Categoria"
+      filter:
+        all: "Todas"
+        pending: "Pendentes"
+        completed: "Concluídas"
     show:
       back: "Voltar"
       edit: "Editar"

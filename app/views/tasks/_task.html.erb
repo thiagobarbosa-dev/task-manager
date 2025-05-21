@@ -31,7 +31,7 @@
       </div>
 
       <ul class="task-items mb-3">
-        <% task.task_items.first(4).each do |item| %>
+        <% task.task_items.order(status: :asc, created_at: :asc).first(4).each do |item| %>
           <li class="flex items-center py-1">
             <span class="w-4 h-4 mr-2 rounded-full <%= item.completed? ? 'bg-green-500' : 'border border-gray-300' %>"></span>
             <span class="<%= item.completed? ? 'line-through text-gray-500' : 'text-gray-700' %>"><%= item.title %></span>

@@ -1,14 +1,4 @@
-<div class="container mx-auto px-4 py-8" data-controller="index">
-  <h1 class="text-2xl font-bold mb-6"><%= t('tasks.index.title', default: 'Minhas Tarefas') %></h1>
-
-  <div id="flash_container"></div>
-
-  <div id="new_task" data-index-target="taskFormContainer">
-    <%= render 'form', task: Task.new %>
-  </div>
-
-  <%= render 'search_form' %>
-
+<%= turbo_stream.replace "tasks" do %>
   <div id="tasks" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
     <% if @tasks&.any? %>
       <%= render partial: "task", collection: @tasks %>
@@ -18,4 +8,8 @@
       </div>
     <% end %>
   </div>
-</div>
+<% end %>
+
+<%= turbo_stream.replace "task-search-form" do %>
+  <%= render 'search_form' %>
+<% end %>
