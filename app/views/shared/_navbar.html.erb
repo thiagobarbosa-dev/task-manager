@@ -7,15 +7,6 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
         </svg>
         <%= link_to t('app_name', default: 'Task Manager'), root_path, class: "text-xl font-bold" %>
-        
-        <% if user_signed_in? %>
-          <div class="hidden md:flex space-x-4">
-            <%= link_to t('navigation.tasks', default: 'Tarefas'), tasks_path, class: "hover:text-indigo-200" %>
-            <%= link_to t('navigation.categories', default: 'Categorias'), by_category_tasks_path, class: "hover:text-indigo-200" %>
-            <%= link_to t('navigation.pending', default: 'Pendentes'), pending_task_items_path, class: "hover:text-indigo-200" %>
-            <%= link_to t('navigation.completed', default: 'Concluídos'), completed_task_items_path, class: "hover:text-indigo-200" %>
-          </div>
-        <% end %>
       </div>
       
       <div class="flex items-center space-x-4">
