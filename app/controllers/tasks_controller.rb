@@ -4,6 +4,19 @@ class TasksController < ApplicationController
 
   def index
     @tasks = current_user.tasks.includes(:task_items).order(created_at: :desc)
+
+    if params[:search].present?
+      search_term = "%#{params[:search].strip.downcase}%"
+
+      @tasks = @tasks.where("tasks.title ILIKE ? OR tasks.category ILIKE ?", search_term, search_term)
+    end
+
+    case params[:status_filter]
+    when "pending"
+      @tasks = @tasks.left_joins(:task_items).where(task_items: { status: "pending" }).distinct
+    when "completed"
+      @tasks = @tasks.completed
+    end
   end
 
   def show

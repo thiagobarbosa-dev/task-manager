@@ -79,6 +79,11 @@ en:
       view_details: "View details"
       items: "items"
       no_items: "No items added"
+      search: "Search by Title or Category"
+      filter:
+        all: "All"
+        pending: "Pending"
+        completed: "Completed"
     show:
       back: "Back"
       edit: "Edit"

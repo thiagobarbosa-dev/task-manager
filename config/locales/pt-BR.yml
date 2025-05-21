@@ -1,6 +1,16 @@
 
 pt-BR:
   hello: "Olá mundo"
+  common:
+    welcome: "Bem-vindo ao Task Manager"
+    loading: "Carregando..."
+    save: "Salvar"
+    cancel: "Cancelar"
+    delete: "Excluir"
+    edit: "Editar"
+    view: "Ver"
+    back: "Voltar"
+    next: "Próximo"
   tasks:
     create:
       success: "Tarefa criada com sucesso."
