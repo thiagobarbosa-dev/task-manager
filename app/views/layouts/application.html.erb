@@ -18,19 +18,20 @@
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= javascript_importmap_tags %>
   </head>
 
   <body class="min-h-screen flex flex-col">
   
     <%= render "shared/navbar" %>
     
-    <div id="flash_container" class="fixed top-4 right-4 z-50">
-      <%= render "shared/flash" %>
+    <div id="flash_container">
+      <%= render partial: "shared/flash", locals: { flash: flash } %>
     </div>
-    
+
     <main class="container mx-auto px-4 py-8">
       <%= yield %>
     </main>
@@ -43,3 +44,4 @@
 
   </body>
 </html>
+

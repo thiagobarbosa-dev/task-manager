@@ -4,6 +4,10 @@ class Task < ApplicationRecord
 
   validates :title, presence: true
 
+  accepts_nested_attributes_for :task_items,
+                              allow_destroy: true,
+                              reject_if: proc { |attributes| attributes["title"].blank? }
+
   scope :pending, -> { joins(:task_items).where(task_items: { status: :pending }).distinct }
   scope :completed, -> {
     left_joins(:task_items)
@@ -21,6 +25,8 @@ class Task < ApplicationRecord
 
   def progress_percentage
     return 0 if task_items.empty?
-    (task_items.completed.count.to_f / task_items.count * 100).round
+
+    completed_count = task_items.select(&:completed?).count
+    (completed_count.to_f / task_items.count * 100).round
   end
 end

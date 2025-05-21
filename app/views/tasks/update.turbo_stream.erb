@@ -1,2 +1,8 @@
-<%= turbo_stream.replace dom_id(@task), partial: "tasks/task", locals: { task: @task } %>
-<%= turbo_stream.append "flash_container", partial: "shared/flash_message", locals: { type: "notice", message: I18n.t("tasks.update.success") } %>
+
+<% if @task.errors.empty? %>
+  <%= turbo_stream.replace "task_#{@task.id}", partial: "tasks/task", locals: { task: @task } %>
+  <%= turbo_stream.append "flash_container", partial: "shared/flash_message", locals: { type: "notice", message: t("tasks.updated") } %>
+<% else %>
+  <%= turbo_stream.replace "task_#{@task.id}", partial: "tasks/form", locals: { task: @task } %>
+  <%= turbo_stream.append "flash_container", partial: "shared/flash_message", locals: { type: "alert", message: t("tasks.update_error") } %>
+<% end %>

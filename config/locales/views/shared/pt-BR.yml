@@ -1,13 +1,112 @@
 pt-BR:
-  shared:
-    navbar:
-      title: "Task Manager"
-    footer:
-      copyright: "Task Manager. Todos os direitos reservados."
-      terms: "Termos"
-      privacy: "Privacidade"
-      contact: "Contato"
-    flash:
-      dismiss: "Fechar"
-    language_selector:
-      title: "Idioma"
+  app_name: "Task Manager"
+  
+  # Navegação
+  navigation:
+    tasks: "Tarefas"
+    categories: "Categorias"
+    pending: "Pendentes"
+    completed: "Concluídos"
+    sign_in: "Entrar"
+    sign_up: "Registrar"
+    sign_out: "Sair"
+  
+  # Página inicial
+  pages:
+    home:
+      headline1: "Gerencie suas tarefas"
+      headline2: "com simplicidade"
+      subtitle: "Um gerenciador de tarefas intuitivo e elegante inspirado no Google Keep."
+      description: "Organize suas ideias, projetos e compromissos em um só lugar."
+      cta_button: "Começar agora"
+      learn_more: "Saiba mais"
+      tasks_section: "Minhas Tarefas"
+      completed_tasks: "concluídas"
+      
+      # Seções informativas
+      organize_title: "ORGANIZE-SE MELHOR"
+      features_title: "Tudo o que você precisa para se organizar"
+      features_subtitle: "Recursos simples e poderosos para gerenciar suas tarefas diárias."
+      
+      # Cards de recursos
+      categories_title: "Organize por categorias"
+      categories_description: "Agrupe suas tarefas por categorias para manter tudo organizado e fácil de encontrar."
+      
+      due_dates_title: "Datas de vencimento"
+      due_dates_description: "Defina prazos para suas tarefas e receba lembretes para nunca perder uma data importante."
+      
+      progress_title: "Acompanhe seu progresso"
+      progress_description: "Visualize seu progresso com barras de progresso intuitivas e estatísticas de conclusão."
+  
+  # Autenticação
+  devise:
+    sessions:
+      new:
+        title: "Entrar"
+        email: "Email"
+        password: "Senha"
+        remember_me: "Lembrar de mim"
+        submit: "Entrar"
+        sign_up: "Registrar"
+        forgot_password: "Esqueceu sua senha?"
+    registrations:
+      new:
+        title: "Registrar"
+        email: "Email"
+        password: "Senha"
+        password_confirmation: "Confirmar senha"
+        submit: "Registrar"
+        sign_in: "Já tem uma conta? Entrar"
+    passwords:
+      new:
+        title: "Esqueceu sua senha?"
+        email: "Email"
+        submit: "Enviar instruções"
+        back: "Voltar"
+  
+  # Tarefas
+  tasks:
+    index:
+      title: "Minhas Tarefas"
+      new_task: "Nova Tarefa"
+      all: "Todas"
+      by_category: "Por Categoria"
+      task_title: "Título da tarefa..."
+      category: "Categoria (opcional)"
+      create_task: "Criar Tarefa"
+      add_item: "Adicionar item"
+      no_tasks: "Nenhuma tarefa encontrada"
+      view_details: "Ver detalhes"
+      items: "itens"
+    show:
+      back: "Voltar"
+      edit: "Editar"
+      delete: "Excluir"
+      confirm_delete: "Tem certeza que deseja excluir esta tarefa?"
+      add_item: "Adicionar item"
+    form:
+      title: "Título"
+      category: "Categoria"
+      submit: "Salvar"
+      cancel: "Cancelar"
+  
+  # Itens de Tarefa
+  task_items:
+    form:
+      title: "Título"
+      due_date: "Data de vencimento"
+      submit: "Salvar"
+      cancel: "Cancelar"
+    item:
+      mark_complete: "Marcar como concluído"
+      mark_pending: "Marcar como pendente"
+      edit: "Editar"
+      delete: "Excluir"
+      confirm_delete: "Tem certeza que deseja excluir este item?"
+  
+  # Rodapé
+  footer:
+    copyright: "Task Manager. Todos os direitos reservados."
+    terms: "Termos"
+    privacy: "Privacidade"
+    contact: "Contato"

@@ -1,13 +1,112 @@
 en:
-  shared:
-    navbar:
-      title: "Task Manager"
-    footer:
-      copyright: "Task Manager. All rights reserved."
-      terms: "Terms"
-      privacy: "Privacy"
-      contact: "Contact"
-    flash:
-      dismiss: "Close"
-    language_selector:
-      title: "Language"
+  app_name: "Task Manager"
+  
+  # Navigation
+  navigation:
+    tasks: "Tasks"
+    categories: "Categories"
+    pending: "Pending"
+    completed: "Completed"
+    sign_in: "Sign in"
+    sign_up: "Sign up"
+    sign_out: "Sign out"
+  
+  # Home page
+  pages:
+    home:
+      headline1: "Manage your tasks"
+      headline2: "with simplicity"
+      subtitle: "An intuitive and elegant task manager inspired by Google Keep."
+      description: "Organize your ideas, projects, and commitments in one place."
+      cta_button: "Get started"
+      learn_more: "Learn more"
+      tasks_section: "My Tasks"
+      completed_tasks: "completed"
+      
+      # Informative sections
+      organize_title: "ORGANIZE BETTER"
+      features_title: "Everything you need to get organized"
+      features_subtitle: "Simple and powerful features to manage your daily tasks."
+      
+      # Feature cards
+      categories_title: "Organize by categories"
+      categories_description: "Group your tasks by categories to keep everything organized and easy to find."
+      
+      due_dates_title: "Due dates"
+      due_dates_description: "Set deadlines for your tasks and receive reminders to never miss an important date."
+      
+      progress_title: "Track your progress"
+      progress_description: "Visualize your progress with intuitive progress bars and completion statistics."
+  
+  # Authentication
+  devise:
+    sessions:
+      new:
+        title: "Log in"
+        email: "Email"
+        password: "Password"
+        remember_me: "Remember me"
+        submit: "Log in"
+        sign_up: "Sign up"
+        forgot_password: "Forgot your password?"
+    registrations:
+      new:
+        title: "Sign up"
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        submit: "Sign up"
+        sign_in: "Already have an account? Log in"
+    passwords:
+      new:
+        title: "Forgot your password?"
+        email: "Email"
+        submit: "Send instructions"
+        back: "Back"
+  
+  # Tasks
+  tasks:
+    index:
+      title: "My Tasks"
+      new_task: "New Task"
+      all: "All"
+      by_category: "By Category"
+      task_title: "Task title..."
+      category: "Category (optional)"
+      create_task: "Create Task"
+      add_item: "Add item"
+      no_tasks: "No tasks found"
+      view_details: "View details"
+      items: "items"
+    show:
+      back: "Back"
+      edit: "Edit"
+      delete: "Delete"
+      confirm_delete: "Are you sure you want to delete this task?"
+      add_item: "Add item"
+    form:
+      title: "Title"
+      category: "Category"
+      submit: "Save"
+      cancel: "Cancel"
+  
+  # Task Items
+  task_items:
+    form:
+      title: "Title"
+      due_date: "Due date"
+      submit: "Save"
+      cancel: "Cancel"
+    item:
+      mark_complete: "Mark as complete"
+      mark_pending: "Mark as pending"
+      edit: "Edit"
+      delete: "Delete"
+      confirm_delete: "Are you sure you want to delete this item?"
+  
+  # Footer
+  footer:
+    copyright: "Task Manager. All rights reserved."
+    terms: "Terms"
+    privacy: "Privacy"
+    contact: "Contact"
