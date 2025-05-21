@@ -1,8 +1,5 @@
-
-<% if @task.errors.empty? %>
-  <%= turbo_stream.replace "task_#{@task.id}", partial: "tasks/task", locals: { task: @task } %>
-  <%= turbo_stream.append "flash_container", partial: "shared/flash_message", locals: { type: "notice", message: t("tasks.updated") } %>
-<% else %>
-  <%= turbo_stream.replace "task_#{@task.id}", partial: "tasks/form", locals: { task: @task } %>
-  <%= turbo_stream.append "flash_container", partial: "shared/flash_message", locals: { type: "alert", message: t("tasks.update_error") } %>
-<% end %>
+<%# app/views/tasks/update.turbo_stream.erb %>
+<%= turbo_stream.replace "task_<%= @task.id %>", partial: "tasks/task", locals: { task: @task } %>
+<%= turbo_stream.replace "new_task", partial: "tasks/form", locals: { task: Task.new } %>
+<%= turbo_stream.append "flash_container", partial: "shared/flash_message", locals: { type: "notice", message: t("tasks.updated") } %>
+<%# <turbo-stream action="eval">document.getElementById('task_<%= @task.id %>').scrollIntoView({ behavior: 'smooth', block: 'center' });</turbo-stream> %>

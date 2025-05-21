@@ -1,9 +1,5 @@
-
-<% if @task.persisted? %>
-  <%= turbo_stream.prepend "tasks", partial: "tasks/task", locals: { task: @task } %>
-  <%= turbo_stream.update "new_task", partial: "tasks/form", locals: { task: Task.new } %>
-  <%= turbo_stream.append "flash_container", partial: "shared/flash_message", locals: { type: "notice", message: t("tasks.created") } %>
-<% else %>
-  <%= turbo_stream.update "new_task", partial: "tasks/form", locals: { task: @task } %>
-  <%= turbo_stream.append "flash_container", partial: "shared/flash_message", locals: { type: "alert", message: t("tasks.create_error") } %>
-<% end %>
+<%# app/views/tasks/create.turbo_stream.erb %>
+<%= turbo_stream.replace "new_task", partial: "tasks/form", locals: { task: Task.new } %>
+<%= turbo_stream.prepend "tasks", partial: "tasks/task", locals: { task: @task } %>
+<%= turbo_stream.append "flash_container", partial: "shared/flash_message", locals: { type: "notice", message: t("tasks.created") } %>
+<%# <turbo-stream action="eval">document.getElementById('tasks').scrollIntoView({ behavior: 'smooth', block: 'start' });</turbo-stream> %>

@@ -3,37 +3,30 @@ class TaskItemsController < ApplicationController
   before_action :set_task
   before_action :set_task_item, only: [ :show, :edit, :update, :destroy, :toggle_status ]
 
-  # GET /tasks/1/task_items
   def index
     @task_items = @task.task_items.order(created_at: :desc)
   end
 
-  # GET /task_items/pending
   def pending
     @task_items = current_user.task_items.pending.order(created_at: :desc)
     render :all_items
   end
 
-  # GET /task_items/completed
   def completed
     @task_items = current_user.task_items.completed.order(created_at: :desc)
     render :all_items
   end
 
-  # GET /tasks/1/task_items/1
   def show
   end
 
-  # GET /tasks/1/task_items/new
   def new
     @task_item = @task.task_items.build
   end
 
-  # GET /tasks/1/task_items/1/edit
   def edit
   end
 
-  # POST /tasks/1/task_items
   def create
     @task_item = @task.task_items.build(task_item_params)
 
@@ -54,7 +47,6 @@ class TaskItemsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /tasks/1/task_items/1
   def update
     respond_to do |format|
       if @task_item.update(task_item_params)
@@ -73,7 +65,6 @@ class TaskItemsController < ApplicationController
     end
   end
 
-  # DELETE /tasks/1/task_items/1
   def destroy
     @task_item.destroy
 
@@ -83,7 +74,6 @@ class TaskItemsController < ApplicationController
     end
   end
 
-  # PATCH /tasks/1/task_items/1/toggle_status
   def toggle_status
     @task_item.toggle_status!
 

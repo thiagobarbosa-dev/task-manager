@@ -1,4 +1,3 @@
-# app/controllers/application_controller.rb
 class ApplicationController < ActionController::Base
   before_action :set_locale
   before_action :authenticate_user!
