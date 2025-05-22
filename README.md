@@ -23,19 +23,19 @@ Here you can add screenshots showcasing the application's key features and UI.
 
 ### Home Page (Logged Out)
 
-![alt text](<CleanShot 2025-05-21 at 23.07.12.png>)
+![alt text](<https://raw.githubusercontent.com/thiagobarbosa-dev/task-manager/refs/heads/main/public/CleanShot%202025-05-21%20at%2023.07.12.png>)
 
 ### Task Index Page (Logged In)
 
-![alt text](<CleanShot 2025-05-21 at 23.11.45.png>)
+![alt text](<https://github.com/thiagobarbosa-dev/task-manager/blob/main/public/CleanShot%202025-05-21%20at%2023.11.45.png?raw=true>)
 
 ### Creating a New Task
 
-![alt text](<CleanShot 2025-05-21 at 23.12.37.png>)
+![alt text](<https://github.com/thiagobarbosa-dev/task-manager/blob/main/public/CleanShot%202025-05-21%20at%2023.12.37.png?raw=true>)
 
 ### Filtered/Searched Tasks
 
-![alt text](<CleanShot 2025-05-21 at 23.13.34.png>)
+![alt text](<https://github.com/thiagobarbosa-dev/task-manager/blob/main/public/CleanShot%202025-05-21%20at%2023.13.34.png?raw=true>)
 
 ## Technologies Used
 
