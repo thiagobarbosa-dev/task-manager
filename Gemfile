@@ -49,7 +49,7 @@ gem "omniauth-rails_csrf_protection", "~> 1.0"
 gem "pundit", "~> 2.3"
 
 # Components and reusable UI elements
-gem "view_component", "~> 3.1"
+gem "view_component", "~> 3.23"
 
 # Pagination
 gem "pagy", "~> 6.0"
