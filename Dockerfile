@@ -16,7 +16,7 @@ WORKDIR /rails
 
 # Install base packages
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git libpq-dev libyaml-dev pkg-config watchman curl libjemalloc2 libvips postgresql-client netcat-openbsd && \
+    apt-get install --no-install-recommends -y build-essential git libpq-dev libyaml-dev pkg-config watchman curl libjemalloc2 libvips netcat-openbsd && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Set environment variables with defaults that can be overridden
