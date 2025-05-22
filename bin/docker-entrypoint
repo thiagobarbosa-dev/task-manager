@@ -1,30 +1,27 @@
 #!/bin/bash -e
 
-# Enable jemalloc for reduced memory usage and latency.
 if [ -z "${LD_PRELOAD+x}" ]; then
     LD_PRELOAD=$(find /usr/lib -name libjemalloc.so.2 -print -quit)
     export LD_PRELOAD
 fi
 
-# If running the rails server, wait for the database to be ready first
-if [ "${1}" == "./bin/thrust" ] || [ "${1}" == "./bin/rails" ] && [ "${2}" == "server" ]; then
-  # Wait for database to be ready
-  until nc -z -v -w30 ${DB_HOST:-db} ${DB_PORT:-5432}; do
-    echo "Waiting for database to be available..."
-    sleep 2
-  done
-  
-  # Create or migrate database if needed
-  if [ "${AUTO_MIGRATE:-true}" == "true" ]; then
-    echo "Preparing database..."
-    ./bin/rails db:prepare
-  fi
-fi
+echo "Waiting for database to be available..."
 
-# Remove a potentially pre-existing server.pid for Rails
+DB_URL=$(ruby -e "require 'uri'; puts ENV['DATABASE_URL']")
+DB_HOST_TO_WAIT_FOR=$(ruby -e "require 'uri'; uri = URI.parse(ENV['DATABASE_URL']); puts uri.host")
+DB_PORT_TO_WAIT_FOR=$(ruby -e "require 'uri'; uri = URI.parse(ENV['DATABASE_URL']); puts uri.port || 5432") # Pega a porta, ou 5432 se não especificada na URL
+
+until nc -z -v -w30 "$DB_HOST_TO_WAIT_FOR" "$DB_PORT_TO_WAIT_FOR"; do
+  echo "Database is not yet available at $DB_HOST_TO_WAIT_FOR:$DB_PORT_TO_WAIT_FOR, retrying..."
+  sleep 2
+done
+echo "Database is available!"
+
+echo "Preparing database (db:prepare)..."
+./bin/rails db:prepare
+
 if [ -f "/rails/tmp/pids/server.pid" ]; then
   rm -f /rails/tmp/pids/server.pid
 fi
 
-# Execute the given or default command
 exec "${@}"
