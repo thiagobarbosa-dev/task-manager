@@ -1,9 +1,11 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  # For details on connection pooling, see Rails configuration guide
+  # Para detalhes sobre pooling de conexões, veja o guia de configuração do Rails
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  # Essas variáveis individuais são usadas se DATABASE_URL não estiver definida.
+  # Para desenvolvimento local com docker-compose, elas são úteis.
   username: <%= ENV["DATABASE_USERNAME"] %>
   password: <%= ENV["DATABASE_PASSWORD"] %>
   host: <%= ENV.fetch("DATABASE_HOST", "localhost") %>
@@ -18,5 +20,5 @@ test:
   database: task_manager_test
 
 production:
-    <<: *default
-    database: task_manager_production
+  <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
